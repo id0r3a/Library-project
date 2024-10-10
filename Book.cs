@@ -7,6 +7,19 @@
         public int ISBN { get; set; }
         public bool IsCheckedOut { get; set; }
 
+        public List<Book> Books { get; set; }
+
+        public Book()
+        {
+            Books = new List<Book>();
+            {
+                new Book("Harry Potter", "JK Rowling", 111);
+                new Book("Mikaels värld", "Dorsa", 222);
+                new Book("Isaks resa", "Ikran", 333);
+            }
+
+        }
+
         public Book(string title, string author, int isbn)
         {
             Title = title;
