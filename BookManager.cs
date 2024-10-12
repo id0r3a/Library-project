@@ -53,6 +53,39 @@ namespace Library_project
         }
     }
 
+    
+     public void CheckOutBook(int isbn)
+        {
+            Book book = availableBooks.Find(b => b.ISBN == isbn);
 
+            if (book != null)
+            {
+                availableBooks.Remove(book);
+                checkedOutBooks.Add(book);
+                Console.WriteLine($"Boken '{book.Title}' är nu utlånad.");
+            }
+            else
+            {
+                Console.WriteLine("Boken är inte tillgänglig.");
+            }
+        }
+
+        // Returnera en bok :)
+        public void ReturnBook(int isbn)
+        {
+            Book book = checkedOutBooks.Find(b => b.ISBN == isbn);
+
+            if (book != null)
+            {
+                checkedOutBooks.Remove(book);
+                availableBooks.Add(book);
+                Console.WriteLine($"Boken '{book.Title}' har återlämnats.");
+            }
+            else
+            {
+                Console.WriteLine("Boken finns inte bland de utlånade böckerna.");
+            }
+        }
     }
+
 }
