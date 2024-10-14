@@ -1,3 +1,5 @@
+using static System.Reflection.Metadata.BlobBuilder;
+
 namespace Library_project
 {
     public class User
@@ -26,7 +28,25 @@ namespace Library_project
                 switch (chooseMenuOption)
                 {
                     case "1":
-                        Console.WriteLine("Ny bok tillagd!");
+                        Console.WriteLine("Skriv följande info");
+
+                        // Fråga användaren efter bokinformation
+                        Console.WriteLine("Enter book title: ");
+                        string title = Console.ReadLine();
+
+                        Console.WriteLine("Enter author name: ");
+                        string author = Console.ReadLine();
+
+                        Console.WriteLine("Enter ISBN: ");
+                        int isbn = Convert.ToInt32(Console.ReadLine());
+
+                        Book addedBook = new Book(title, author, isbn);
+                        myBookCollection.AddBook(addedBook);
+
+
+                        Console.WriteLine("Tryck Enter for att fortsätta!");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
 
                     case "2":

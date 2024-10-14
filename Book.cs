@@ -21,6 +21,11 @@ namespace Library_project
             Books.Add(new Book("Isaks resa", "Ikran", 333));
         }
 
+        public void AddBook(Book book)
+        {
+            Books.Add(book);
+        }
+
         public void PrintBooks()
         {
             foreach (var book in Books)
