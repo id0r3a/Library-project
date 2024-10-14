@@ -9,10 +9,7 @@ namespace Library_project
 
 
 
-        public void AddBook(string title, string author, int isbn)
-        {
-            books.Add(new Book(title, author, isbn));
-        }
+        
 
         public void RemoveBook(int isbn)
         {
