@@ -29,17 +29,17 @@ namespace Library_project
             }
             else
             {
-                Console.WriteLine("Book not found");
+                Console.WriteLine("Bok finns inte");
             }
         }
-        
-        //public void ViweBooks()
-        //{
-        //    foreach (Book book in books)
-        //    {
-        //        Console.WriteLine(book);
-        //    }
-        //}
+
+        public void ViweBooks()
+        {
+            foreach (Book book in books)
+            {
+                Console.WriteLine(book);
+            }
+        }
 
 
         //public void CheckOutBook(int isbn)

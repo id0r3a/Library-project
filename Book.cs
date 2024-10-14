@@ -26,23 +26,23 @@ namespace Library_project
             Books.Add(book);
         }
 
-        public static void HittaSpecifikBok(List<Book> boklista, string sökUppFörfattare)
+        public static void FindSpecificBook(List<Book> boklista, string SearchAuthor)
         {
-            bool bokHittad = false;
+            bool bookFound = false;
 
             // Iterera genom boklistan för att hitta matchande författare
             foreach (Book bok in boklista)
             {
-                if (bok.Author.ToUpper() == sökUppFörfattare.ToUpper())  // Jämför med stora och små bokstäver
+                if (bok.Author.ToUpper() == SearchAuthor.ToUpper())  // Jämför med stora och små bokstäver
                 {
                     Console.WriteLine($"Här är boken av {bok.Author} som du sökte efter:");
                     Console.WriteLine($"Titel: {bok.Title}, ISBN: {bok.ISBN}");
-                    bokHittad = true;
+                    bookFound = true;
                     break;
                 }
             }
 
-            if (!bokHittad)
+            if (!bookFound)
             {
                 Console.WriteLine("Ingen bok hittades med den författaren.");
             }

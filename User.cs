@@ -31,13 +31,13 @@ namespace Library_project
                         Console.WriteLine("Skriv följande info");
 
                         // Fråga användaren efter bokinformation
-                        Console.WriteLine("Enter book title: ");
+                        Console.WriteLine("Skriv boktiteln: ");
                         string title = Console.ReadLine();
 
-                        Console.WriteLine("Enter author name: ");
+                        Console.WriteLine("Skriv författaren: ");
                         string author = Console.ReadLine();
 
-                        Console.WriteLine("Enter ISBN: ");
+                        Console.WriteLine("Skriv ISBN: ");
                         int isbn = Convert.ToInt32(Console.ReadLine());
 
                         Book addedBook = new Book(title, author, isbn);
@@ -53,7 +53,7 @@ namespace Library_project
                         Console.WriteLine("Skriv författarens namn på boken du söker efter: ");
                         string sökUppBok = Console.ReadLine().ToUpper();
 
-                        Book.HittaSpecifikBok(myBookCollection.Books, sökUppBok);
+                        Book.FindSpecificBook(myBookCollection.Books, sökUppBok);
                         break;
 
                     case "3":
@@ -70,8 +70,9 @@ namespace Library_project
                         break;
                     case "5":
                         keepRunning = false;
+                        Console.WriteLine("Tack för att du använde vårt bibliotek. Programmet avslutas nu.");
 
-                        Console.WriteLine("Stänger av programmet...");
+
                         break;
 
                     default:
@@ -80,7 +81,6 @@ namespace Library_project
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("Tack för att du använde vårt bibliotek. Programmet avslutas nu.");
 
         }
 
