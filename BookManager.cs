@@ -52,13 +52,13 @@ namespace Library_project
                 }
             }
         }
-        public void ViweBooks()
-        {
-            foreach (Book book in books)
-            {
-                Console.WriteLine(book);
-            }
-        }
+        //public void ViweBooks()
+        //{
+        //    foreach (Book book in books)
+        //    {
+        //        Console.WriteLine(book);
+        //    }
+        //}
 
 
         //public void CheckOutBook(int isbn)

@@ -6,6 +6,7 @@ namespace Library_project
         public static void MenyOption()
 
         {
+            Book myBookCollection = new Book();
 
             bool keepRunning = true;
 
@@ -14,11 +15,11 @@ namespace Library_project
 
                 Console.WriteLine("Välkomen till vårat Bibliotek");
                 Console.WriteLine("Välj ett alternativ:");
-                Console.WriteLine("1. Lägg till ny bok.");
-                Console.WriteLine("2.Sök bok efter förafattare.");
-                Console.WriteLine("3.Visa alla böcker i samlingen.");
-                Console.WriteLine("4.Checka ut/Retunera bok.");
-                Console.WriteLine("5 Stänga av programmet.");
+                Console.WriteLine("Tryck (1) för att lägga till ny bok.");
+                Console.WriteLine("Tryck (2) för att sök bok efter förafattare.");
+                Console.WriteLine("Tryck (3) för visa alla böcker i samlingen.");
+                Console.WriteLine("Tryck (4) checka ut/Retunera bok.");
+                Console.WriteLine("Tryck (5) för att stänga av programmet.");
 
                 string chooseMenuOption = Console.ReadLine();
 
@@ -33,7 +34,12 @@ namespace Library_project
                         break;
 
                     case "3":
-                        Console.WriteLine("Visar alla böcker...");
+                        Console.WriteLine("Detta är alla böcker i vår samling");
+                        myBookCollection.PrintBooks();
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Tryck enter för att fortsätta");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
 
                     case "4":
