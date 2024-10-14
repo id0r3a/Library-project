@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.Design;
-using static System.Reflection.Metadata.BlobBuilder;
-
 namespace Library_project
 {
-    public class User
+    public class User : Book
     {
+        // Den här delen är från "Tillägg-av-metoder-i-userklassen"
         public static void MenyOption()
         {
             Console.WriteLine("Välkomen till vårat Bibliotek");
@@ -18,30 +16,55 @@ namespace Library_project
             string chooseMenuOption = Console.ReadLine();
 
             switch (chooseMenuOption)
-
             {
                 case "1":
-                    Console.WriteLine();
+                    Console.WriteLine("Ny bok tillagd!");
                     break;
 
                 case "2":
-                    Console.WriteLine();
+                    Console.WriteLine("Söker efter bok...");
                     break;
 
                 case "3":
-                    Console.WriteLine();
+                    Console.WriteLine("Visar alla böcker...");
                     break;
 
                 case "4":
-                    Console.WriteLine();
+                    Console.WriteLine("Checkar ut/returnerar bok...");
                     break;
+
                 default:
                     Console.WriteLine("Felaktigt val,försök igen.");
                     break;
             }
+        }
 
+        // Den här delen är från "master"-grenen
+        public List<Book> books = new List<Book>();
+
+        public void SearchBook()
+        {
+            Console.WriteLine("Enter search term: ");
+            string searchTerm = Console.ReadLine();
+            foreach (Book book in books)
+            {
+                if (book.Title.Contains(searchTerm) || book.Author.Contains(searchTerm))
+                {
+                    book.DisplayBookInfo();
+                }
+                else
+                {
+                    Console.WriteLine("No books found");
+                }
+            }
+        }
+
+        public void ViweBooks()
+        {
+            foreach (Book book in books)
+            {
+                Console.WriteLine(book);
+            }
         }
     }
 }
-
-
