@@ -50,7 +50,10 @@ namespace Library_project
                         break;
 
                     case "2":
-                        Console.WriteLine("Söker efter bok...");
+                        Console.WriteLine("Skriv författarens namn på boken du söker efter: ");
+                        string sökUppBok = Console.ReadLine().ToUpper();
+
+                        Book.HittaSpecifikBok(myBookCollection.Books, sökUppBok);
                         break;
 
                     case "3":
