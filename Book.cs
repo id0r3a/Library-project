@@ -1,4 +1,6 @@
-﻿namespace Library_project
+﻿using static System.Reflection.Metadata.BlobBuilder;
+
+namespace Library_project
 {
     public class Book
     {       //Attributer för huvudklassen
@@ -36,6 +38,7 @@
             Console.WriteLine($"Tillgänglighet: {(IsCheckedOut ? "Not available" : "Available")}");
 
         }
+        
     }
 
 }
