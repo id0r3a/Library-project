@@ -32,23 +32,7 @@ namespace Library_project
                 Console.WriteLine("Book not found");
             }
         }
-        public void SearchBook()
-        {
-            Console.WriteLine("Enter search term: ");
-            string searchTerm = Console.ReadLine();
-            foreach (Book book in books)
-            {
-                if (book.Title.Contains(searchTerm) || book.Author.Contains(searchTerm))
-                {
-                    book.DisplayBookInfo();
-                }
-
-                else
-                {
-                    Console.WriteLine("No books found");
-                }
-            }
-        }
+        
         //public void ViweBooks()
         //{
         //    foreach (Book book in books)
