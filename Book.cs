@@ -14,15 +14,22 @@ namespace Library_project
         public Book()
         {
             Books = new List<Book>();
-            {
-                new Book("Harry Potter", "JK Rowling", 111);
-                new Book("Mikaels värld", "Dorsa", 222);
-                new Book("Isaks resa", "Ikran", 333);
-            }
 
+            // Lägg till böcker i listan
+            Books.Add(new Book("Harry Potter", "JK Rowling", 111));
+            Books.Add(new Book("Mikaels värld", "Dorsa", 222));
+            Books.Add(new Book("Isaks resa", "Ikran", 333));
         }
 
-        public Book(string title, string author, int isbn)
+        public void PrintBooks()
+        {
+            foreach (var book in Books)
+            {
+                Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, Sidor: {book.ISBN}");
+            }
+        }
+
+            public Book(string title, string author, int isbn)
         {
             Title = title;
             Author = author;
