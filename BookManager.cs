@@ -1,21 +1,30 @@
-﻿
+﻿using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Library_project
 {
     public class BookManager
     {
-        public List<Book> books = new List<Book>();
+        public List<Book> Books { get; set; }
+        public BookManager()
+        {
 
 
+            // public List<Book> books = new List<Book>();
+
+            // Lägg till böcker i listan
 
 
+            Books.Add(new Book("Harry Potter", "JK Rowling", 111));
+            Books.Add(new Book("Mikaels värld", "Dorsa", 222));
+            Books.Add(new Book("Isaks resa", "Ikran", 333));
         
+        }
 
         public void RemoveBook(int isbn)
         {
             Book bookToRemove = null;
 
-            foreach (Book book in books)
+            foreach (Book book in Books)
             {
                 if (book.ISBN == isbn)
                 {
@@ -25,7 +34,7 @@ namespace Library_project
             }
             if (bookToRemove != null)
             {
-                books.Remove(bookToRemove);
+                Books.Remove(bookToRemove);
             }
             else
             {
@@ -35,45 +44,61 @@ namespace Library_project
 
         public void ViweBooks()
         {
-            foreach (Book book in books)
+            foreach (Book book in Books)
             {
                 Console.WriteLine(book);
             }
         }
 
-
-        //public void CheckOutBook(int isbn)
-        //{
-        //    Book book = availableBooks.Find(b => b.ISBN == isbn);
-
-        //    if (book != null)
-        //    {
-        //        availableBooks.Remove(book);
-        //        checkedOutBooks.Add(book);
-        //        Console.WriteLine($"Boken '{book.Title}' är nu utlånad.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Boken är inte tillgänglig.");
-        //    }
-        //}
-
-        //// Returnera en bok :)
-        //public void ReturnBook(int isbn)
-        //{
-        //    Book book = checkedOutBooks.Find(b => b.ISBN == isbn);
-
-        //    if (book != null)
-        //    {
-        //        checkedOutBooks.Remove(book);
-        //        availableBooks.Add(book);
-        //        Console.WriteLine($"Boken '{book.Title}' har återlämnats.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Boken finns inte bland de utlånade böckerna.");
-        //    }
-        //}
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//public void CheckOutBook(int isbn)
+//{
+//    Book book = availableBooks.Find(b => b.ISBN == isbn);
+
+//    if (book != null)
+//    {
+//        availableBooks.Remove(book);
+//        checkedOutBooks.Add(book);
+//        Console.WriteLine($"Boken '{book.Title}' är nu utlånad.");
+//    }
+//    else
+//    {
+//        Console.WriteLine("Boken är inte tillgänglig.");
+//    }
+//}
+
+//// Returnera en bok :)
+//public void ReturnBook(int isbn)
+//{
+//    Book book = checkedOutBooks.Find(b => b.ISBN == isbn);
+
+//    if (book != null)
+//    {
+//        checkedOutBooks.Remove(book);
+//        availableBooks.Add(book);
+//        Console.WriteLine($"Boken '{book.Title}' har återlämnats.");
+//    }
+//    else
+//    {
+//        Console.WriteLine("Boken finns inte bland de utlånade böckerna.");
+//    }
+//}
+
+
+
+
+
+

@@ -8,7 +8,7 @@ namespace Library_project
         public static void MenyOption()
 
         {
-            Book myBookCollection = new Book();
+            BookManager myBookCollection = new BookManager();
 
             bool keepRunning = true;
 
@@ -41,8 +41,7 @@ namespace Library_project
                         int isbn = Convert.ToInt32(Console.ReadLine());
 
                         Book addedBook = new Book(title, author, isbn);
-                        myBookCollection.AddBook(addedBook);
-
+                        myBookCollection.Books.Add(addedBook);
 
                         Console.WriteLine("Tryck Enter for att fortsätta!");
                         Console.ReadKey();
@@ -52,7 +51,6 @@ namespace Library_project
                     case "2":
                         Console.WriteLine("Skriv författarens namn på boken du söker efter: ");
                         string sökUppBok = Console.ReadLine().ToUpper();
-
                         Book.FindSpecificBook(myBookCollection.Books, sökUppBok);
                         break;
 
@@ -68,11 +66,10 @@ namespace Library_project
                     case "4":
                         Console.WriteLine("Checkar ut/returnerar bok...");
                         break;
+                    
                     case "5":
                         keepRunning = false;
                         Console.WriteLine("Tack för att du använde vårt bibliotek. Programmet avslutas nu.");
-
-
                         break;
 
                     default:
@@ -83,9 +80,6 @@ namespace Library_project
             }
 
         }
-
-
-
         
     }
 }
