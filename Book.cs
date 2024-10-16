@@ -3,7 +3,8 @@
 namespace Library_project
 {
     public class Book
-    {       //Attributer för huvudklassen
+    {       
+        //Attributer för huvudklassen
         public string Title { get; set; }
         public string Author { get; set; }
         public int ISBN { get; set; }
@@ -11,19 +12,11 @@ namespace Library_project
 
         public List<Book> Books { get; set; }
 
-        public Book()
+        public Book(string title, string author, int isbn)
         {
-            Books = new List<Book>();
-
-            // Lägg till böcker i listan
-            Books.Add(new Book("Harry Potter", "JK Rowling", 111));
-            Books.Add(new Book("Mikaels värld", "Dorsa", 222));
-            Books.Add(new Book("Isaks resa", "Ikran", 333));
-        }
-
-        public void AddBook(Book book)
-        {
-            Books.Add(book);
+           Title = title;
+            Author = author;
+            ISBN = isbn;
         }
 
         public static void FindSpecificBook(List<Book> boklista, string SearchAuthor)
@@ -51,17 +44,10 @@ namespace Library_project
         {
             foreach (var book in Books)
             {
-                Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, Sidor: {book.ISBN}");
+                Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}");
             }
         }
 
-            public Book(string title, string author, int isbn)
-        {
-            Title = title;
-            Author = author;
-            ISBN = isbn;
-            IsCheckedOut = false;
-        }
         ///Metod för att skriva ut information om boken
         public void DisplayBookInfo()
         {
