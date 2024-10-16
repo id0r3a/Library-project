@@ -10,7 +10,7 @@ namespace Library_project
         public int ISBN { get; set; }
         public bool IsCheckedOut { get; set; }
 
-        public List<Book> Books { get; set; }
+        //public List<Book> Books { get; set; }
 
         public Book(string title, string author, int isbn)
         {
@@ -40,13 +40,13 @@ namespace Library_project
                 Console.WriteLine("Ingen bok hittades med den författaren.");
             }
         }
-        public void PrintBooks()
-        {
-            foreach (var book in Books)
-            {
-                Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}");
-            }
-        }
+        //public void PrintBooks()
+        //{
+        //    foreach (var book in Books)
+        //    {
+        //        Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}");
+        //    }
+        //}
 
         ///Metod för att skriva ut information om boken
         public void DisplayBookInfo()
