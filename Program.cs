@@ -1,4 +1,4 @@
-﻿namespace Library_project
+﻿namespace Library_Project
 {
     internal class Program
     {
@@ -9,7 +9,5 @@
           
 
         }
-
-
     }
-    }
+}
