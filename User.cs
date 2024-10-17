@@ -51,7 +51,8 @@ namespace Library_project
                     case "2":
                         Console.WriteLine("Skriv författarens namn på boken du söker efter: ");
                         string searchBook = Console.ReadLine().ToUpper();
-                        Book.FindSpecificBook(myBookCollection.Books, searchBook);
+                        BookManager.FindSpecificBook(myBookCollection.Books, searchBook);
+                        
 
                         Console.WriteLine("Tryck Enter for att fortsätta!");
                         Console.ReadKey();
@@ -80,7 +81,7 @@ namespace Library_project
                         Console.WriteLine("Felaktigt val,försök igen.");
                         break;
                 }
-                Console.WriteLine();
+                
             }
 
         }
