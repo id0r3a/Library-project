@@ -7,49 +7,13 @@ namespace Library_project
         public List<Book> Books { get; set; }
         public BookManager()
         {
-            Books = new List<Book>(); //initerar listan
-
-
-            // public List<Book> books = new List<Book>();
-
-            // Lägg till böcker i listan
-
-
+            Books = new List<Book>(); 
+            
             Books.Add(new Book("Harry Potter", "JK Rowling", 111));
             Books.Add(new Book("Mikaels värld", "Dorsa", 222));
             Books.Add(new Book("Isaks resa", "Ikran", 333));
-        
         }
 
-        public void RemoveBook(int isbn)
-        {
-            Book bookToRemove = null;
-
-            foreach (Book book in Books)
-            {
-                if (book.ISBN == isbn)
-                {
-                    bookToRemove = book;
-                    break;
-                }
-            }
-            if (bookToRemove != null)
-            {
-                Books.Remove(bookToRemove);
-            }
-            else
-            {
-                Console.WriteLine("Bok finns inte");
-            }
-        }
-
-        public void ViweBooks()
-        {
-            foreach (Book book in Books)
-            {
-                Console.WriteLine(book);
-            }
-        }
 
         public void PrintBooks()
         {
@@ -64,6 +28,28 @@ namespace Library_project
             else
             {
                 Console.WriteLine("Det finns inga böcker i samlingen.");
+            }
+        }
+
+        public static void FindSpecificBook(List<Book> boklista, string SearchAuthor)
+        {
+            bool bookFound = false;
+
+            // Iterera genom boklistan för att hitta matchande författare
+            foreach (Book bok in boklista)
+            {
+                if (bok.Author.ToUpper() == SearchAuthor.ToUpper())  // Jämför med stora och små bokstäver
+                {
+                    Console.WriteLine($"Här är boken av {bok.Author} som du sökte efter:");
+                    Console.WriteLine($"Titel: {bok.Title}, ISBN: {bok.ISBN}");
+                    bookFound = true;
+                    break;
+                }
+            }
+
+            if (!bookFound)
+            {
+                Console.WriteLine("Ingen bok hittades med den författaren.");
             }
         }
 
