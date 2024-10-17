@@ -1,6 +1,6 @@
 using static System.Reflection.Metadata.BlobBuilder;
 
-namespace Library_project
+namespace Library_Project
 {
     public class User
     {

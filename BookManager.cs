@@ -1,123 +1,110 @@
-﻿using static System.Reflection.Metadata.BlobBuilder;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Library_project
+namespace Library_Project
 {
+    public class Book
+    {
+        public int ISBN { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine($"ISBN: {ISBN}, Title: {Title}, Author: {Author}");
+        }
+    }
+
     public class BookManager
     {
-        public List<Book> Books { get; set; }
-        public BookManager()
+        public List<Book> Books { get; set; } = new List<Book>();
+        public List<Book> AvailableBooks { get; set; } = new List<Book>();
+        public List<Book> CheckedOutBooks { get; set; } = new List<Book>();
+
+        public void AddBook(Book book)
         {
-            Books = new List<Book>(); //initerar listan
-
-
-            // public List<Book> books = new List<Book>();
-
-            // Lägg till böcker i listan
-
-
-            Books.Add(new Book("Harry Potter", "JK Rowling", 111));
-            Books.Add(new Book("Mikaels värld", "Dorsa", 222));
-            Books.Add(new Book("Isaks resa", "Ikran", 333));
-        
+            Books.Add(book);
+            AvailableBooks.Add(book);
         }
 
         public void RemoveBook(int isbn)
         {
-            Book bookToRemove = null;
+            Book book = FindBook(isbn);
+            if (book != null)
+            {
+                Books.Remove(book);
+                AvailableBooks.Remove(book);
+                Console.WriteLine($"Removed: {book.Title}");
+            }
+            else
+            {
+                Console.WriteLine("Book not found.");
+            }
+        }
 
+        public void SearchBook(string searchTerm)
+        {
+            bool found = false;
             foreach (Book book in Books)
             {
-                if (book.ISBN == isbn)
+                if (book.Title.Contains(searchTerm) || book.Author.Contains(searchTerm))
                 {
-                    bookToRemove = book;
-                    break;
+                    book.DisplayInfo();
+                    found = true;
                 }
             }
-            if (bookToRemove != null)
+            if (!found)
             {
-                Books.Remove(bookToRemove);
-            }
-            else
-            {
-                Console.WriteLine("Bok finns inte");
+                Console.WriteLine("No books found.");
             }
         }
 
-        public void ViweBooks()
+        public void ViewBooks()
         {
             foreach (Book book in Books)
             {
-                Console.WriteLine(book);
+                book.DisplayInfo();
             }
         }
 
-        public void PrintBooks()
+        public void CheckOutBook(int isbn)
         {
-            if(Books.Count > 0) 
+            Book book = FindBook(isbn);
+            if (book != null && AvailableBooks.Contains(book))
             {
-
-            foreach (var book in Books)
-            {
-                Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}");
-            }
+                AvailableBooks.Remove(book);
+                CheckedOutBooks.Add(book);
+                Console.WriteLine($"Checked out: {book.Title}");
             }
             else
             {
-                Console.WriteLine("Det finns inga böcker i samlingen.");
+                Console.WriteLine("Book not available.");
             }
         }
 
-        //public void CheckOutBook(int isbn)
-        //{
-        //    Book book = availableBooks.Find(b => b.ISBN == isbn);
+        public void ReturnBook(int isbn)
+        {
+            Book book = FindCheckedOutBook(isbn);
+            if (book != null)
+            {
+                CheckedOutBooks.Remove(book);
+                AvailableBooks.Add(book);
+                Console.WriteLine($"Returned: {book.Title}");
+            }
+            else
+            {
+                Console.WriteLine("Book not checked out.");
+            }
+        }
 
-        //    if (book != null)
-        //    {
-        //        availableBooks.Remove(book);
-        //        checkedOutBooks.Add(book);
-        //        Console.WriteLine($"Boken '{book.Title}' är nu utlånad.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Boken är inte tillgänglig.");
-        //    }
-        //}
+        public Book FindBook(int isbn)
+        {
+            return Books.Find(b => b.ISBN == isbn);
+        }
 
-        //// Returnera en bok :)
-        //public void ReturnBook(int isbn)
-        //{
-        //    Book book = checkedOutBooks.Find(b => b.ISBN == isbn);
-
-        //    if (book != null)
-        //    {
-        //        checkedOutBooks.Remove(book);
-        //        availableBooks.Add(book);
-        //        Console.WriteLine($"Boken '{book.Title}' har återlämnats.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Boken finns inte bland de utlånade böckerna.");
-        //    }
-        //}
-
+        public Book FindCheckedOutBook(int isbn)
+        {
+            return CheckedOutBooks.Find(b => b.ISBN == isbn);
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
