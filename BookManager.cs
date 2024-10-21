@@ -2,17 +2,33 @@
 
 namespace Library_project
 {
-    public class BookManager
+   public class BookManager
+{
+    public List<Book> Books { get; set; }
+    public List<Book> availableBooks { get; set; }
+    public List<Book> checkedOutBooks { get; set; }
+
+    public BookManager()
     {
-        public List<Book> Books { get; set; }
-        public BookManager()
-        {
-            Books = new List<Book>(); 
-            
-            Books.Add(new Book("Harry Potter", "JK Rowling", 111));
-            Books.Add(new Book("Mikaels värld", "Dorsa", 222));
-            Books.Add(new Book("Isaks resa", "Ikran", 333));
-        }
+        Books = new List<Book>(); 
+        availableBooks = new List<Book>(); 
+        checkedOutBooks = new List<Book>();
+
+        // Lägg till böcker i både Books och availableBooks
+        var book1 = new Book("Harry Potter", "JK Rowling", 111);
+        var book2 = new Book("Mikaels värld", "Dorsa", 222);
+        var book3 = new Book("Isaks resa", "Ikran", 333);
+
+        Books.Add(book1);
+        availableBooks.Add(book1);
+        Books.Add(book2);
+        availableBooks.Add(book2);
+        Books.Add(book3);
+        availableBooks.Add(book3);
+    }
+
+    // Övriga metoder...
+
 
 
         public void PrintBooks()
@@ -53,38 +69,38 @@ namespace Library_project
             }
         }
 
-        //public void CheckOutBook(int isbn)
-        //{
-        //    Book book = availableBooks.Find(b => b.ISBN == isbn);
+        public void CheckOutBook(int isbn)
+        {
+            Book book = availableBooks.Find(b => b.ISBN == isbn);
 
-        //    if (book != null)
-        //    {
-        //        availableBooks.Remove(book);
-        //        checkedOutBooks.Add(book);
-        //        Console.WriteLine($"Boken '{book.Title}' är nu utlånad.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Boken är inte tillgänglig.");
-        //    }
-        //}
+            if (book != null)
+            {
+                availableBooks.Remove(book);
+                checkedOutBooks.Add(book);
+                Console.WriteLine($"Boken '{book.Title}' är nu utlånad.");
+            }
+            else
+            {
+                Console.WriteLine("Boken är inte tillgänglig.");
+            }
+        }
 
-        //// Returnera en bok :)
-        //public void ReturnBook(int isbn)
-        //{
-        //    Book book = checkedOutBooks.Find(b => b.ISBN == isbn);
+       
+        public void ReturnBook(int isbn)
+        {
+            Book book = checkedOutBooks.Find(b => b.ISBN == isbn);
 
-        //    if (book != null)
-        //    {
-        //        checkedOutBooks.Remove(book);
-        //        availableBooks.Add(book);
-        //        Console.WriteLine($"Boken '{book.Title}' har återlämnats.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Boken finns inte bland de utlånade böckerna.");
-        //    }
-        //}
+            if (book != null)
+            {
+                checkedOutBooks.Remove(book);
+                availableBooks.Add(book);
+                Console.WriteLine($"Boken '{book.Title}' har återlämnats.");
+            }
+            else
+            {
+                Console.WriteLine("Boken finns inte bland de utlånade böckerna.");
+            }
+        }
 
     }
 }
