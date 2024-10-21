@@ -1,27 +1,23 @@
-using static System.Reflection.Metadata.BlobBuilder;
+using System;
 
 namespace Library_project
 {
     public class User
     {
-        // Den här delen är från "Tillägg-av-metoder-i-userklassen"
         public static void MenyOption()
-
         {
             BookManager myBookCollection = new BookManager();
-
             bool keepRunning = true;
 
             while (keepRunning)
             {
-
-                Console.WriteLine("Välkomen till vårat Bibliotek");
+                Console.WriteLine("Välkommen till vårt bibliotek");
                 Console.WriteLine("Välj ett alternativ:");
-                Console.WriteLine("Tryck (1) för att lägga till ny bok.");
-                Console.WriteLine("Tryck (2) för att sök bok efter förafattare.");
-                Console.WriteLine("Tryck (3) för visa alla böcker i samlingen.");
-                Console.WriteLine("Tryck (4) checka ut/Retunera bok.");
-                Console.WriteLine("Tryck (5) för att stänga av programmet.");
+                Console.WriteLine("1. Lägg till ny bok.");
+                Console.WriteLine("2. Sök bok efter författare.");
+                Console.WriteLine("3. Visa alla tillgängliga böcker.");
+                Console.WriteLine("4. Checka ut/återlämna bok.");
+                Console.WriteLine("5. Stäng av programmet.");
 
                 string chooseMenuOption = Console.ReadLine();
 
@@ -42,49 +38,63 @@ namespace Library_project
 
                         Book addedBook = new Book(title, author, isbn);
                         myBookCollection.Books.Add(addedBook);
+                        myBookCollection.AvailableBooks.Add(addedBook); // Also add to available books
 
-                        Console.WriteLine("Tryck Enter for att fortsätta!");
+                        Console.WriteLine("Tryck Enter för att fortsätta!");
                         Console.ReadKey();
                         Console.Clear();
                         break;
 
                     case "2":
                         Console.WriteLine("Skriv författarens namn på boken du söker efter: ");
-                        string searchBook = Console.ReadLine().ToUpper();
+                        string searchBook = Console.ReadLine();
                         BookManager.FindSpecificBook(myBookCollection.Books, searchBook);
-                        
 
-                        Console.WriteLine("Tryck Enter for att fortsätta!");
+                        Console.WriteLine("Tryck Enter för att fortsätta!");
                         Console.ReadKey();
                         Console.Clear();
                         break;
 
                     case "3":
-                        Console.WriteLine("Detta är alla böcker i vår samling");
-                        myBookCollection.PrintBooks();
-                        Console.WriteLine(" ");
-                        Console.WriteLine("Tryck enter för att fortsätta");
+                        Console.WriteLine("Detta är alla tillgängliga böcker i vår samling:");
+                        myBookCollection.PrintAvailableBooks(); // Call the updated method
+                        Console.WriteLine("Tryck Enter för att fortsätta.");
                         Console.ReadKey();
                         Console.Clear();
                         break;
 
                     case "4":
-                        Console.WriteLine("Checkar ut/returnerar bok...");
+                        Console.Write("Ange ISBN för boken du vill låna eller återlämna: ");
+                        int bookIsbn = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Vill du (1) låna eller (2) återlämna boken? (ange 1 eller 2):");
+                        string action = Console.ReadLine();
+                        if (action == "1")
+                        {
+                            myBookCollection.CheckOutBook(bookIsbn);
+                        }
+                        else if (action == "2")
+                        {
+                            myBookCollection.ReturnBook(bookIsbn);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltigt val. Försök igen.");
+                        }
+                        Console.WriteLine("Tryck Enter för att fortsätta.");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
-                    
+
                     case "5":
                         keepRunning = false;
                         Console.WriteLine("Tack för att du använde vårt bibliotek. Programmet avslutas nu.");
                         break;
 
                     default:
-                        Console.WriteLine("Felaktigt val,försök igen.");
+                        Console.WriteLine("Felaktigt val, försök igen.");
                         break;
                 }
-                
             }
-
         }
-        
     }
 }
