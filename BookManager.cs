@@ -52,39 +52,70 @@ namespace Library_project
                 Console.WriteLine("Ingen bok hittades med den författaren.");
             }
         }
+        public void RemoveBook(string title)
+        {
+            if (Books.Count > 0)
+            {
+                Book bookToRemove = null;
+                foreach (var book in Books)
+                {
+                    if (book.Title.ToUpper() == title.ToUpper())
+                    {
+                        bookToRemove = book;
+                        break;
+                    }
+                }
+
+                if (bookToRemove != null)
+                {
+                    Books.Remove(bookToRemove);
+                    Console.WriteLine($"Boken '{title}' har tagits bort från samlingen.");
+                }
+                else
+                {
+                    Console.WriteLine($"Boken med titeln '{title}' hittades inte i samlingen.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Det finns inga böcker i samlingen att ta bort.");
+
+            }
+        }
+
 
         //public void CheckOutBook(int isbn)
         //{
         //    Book book = availableBooks.Find(b => b.ISBN == isbn);
 
-        //    if (book != null)
-        //    {
-        //        availableBooks.Remove(book);
-        //        checkedOutBooks.Add(book);
-        //        Console.WriteLine($"Boken '{book.Title}' är nu utlånad.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Boken är inte tillgänglig.");
-        //    }
-        //}
+                //    if (book != null)
+                //    {
+                //        availableBooks.Remove(book);
+                //        checkedOutBooks.Add(book);
+                //        Console.WriteLine($"Boken '{book.Title}' är nu utlånad.");
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine("Boken är inte tillgänglig.");
+                //    }
+                //}
 
-        //// Returnera en bok :)
-        //public void ReturnBook(int isbn)
-        //{
-        //    Book book = checkedOutBooks.Find(b => b.ISBN == isbn);
+                //// Returnera en bok :)
+                //public void ReturnBook(int isbn)
+                //{
+                //    Book book = checkedOutBooks.Find(b => b.ISBN == isbn);
 
-        //    if (book != null)
-        //    {
-        //        checkedOutBooks.Remove(book);
-        //        availableBooks.Add(book);
-        //        Console.WriteLine($"Boken '{book.Title}' har återlämnats.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Boken finns inte bland de utlånade böckerna.");
-        //    }
-        //}
+                //    if (book != null)
+                //    {
+                //        checkedOutBooks.Remove(book);
+                //        availableBooks.Add(book);
+                //        Console.WriteLine($"Boken '{book.Title}' har återlämnats.");
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine("Boken finns inte bland de utlånade böckerna.");
+                //    }
+                //}
 
     }
 }

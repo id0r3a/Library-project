@@ -21,7 +21,8 @@ namespace Library_project
                 Console.WriteLine("Tryck (2) för att sök bok efter förafattare.");
                 Console.WriteLine("Tryck (3) för visa alla böcker i samlingen.");
                 Console.WriteLine("Tryck (4) checka ut/Retunera bok.");
-                Console.WriteLine("Tryck (5) för att stänga av programmet.");
+                Console.WriteLine("Tryck (5) för att ta bort bok från boksamlingen.");
+                Console.WriteLine("Tryck (6) för att stänga av programmet.");
 
                 string chooseMenuOption = Console.ReadLine();
 
@@ -71,8 +72,18 @@ namespace Library_project
                     case "4":
                         Console.WriteLine("Checkar ut/returnerar bok...");
                         break;
-                    
+
+
                     case "5":
+                        Console.WriteLine("Skriv titeln på boken du vill ta bort");
+                        string removeTitle = Console.ReadLine();
+                        myBookCollection.RemoveBook(removeTitle);
+                        Console.WriteLine("Tryck Enter för att fortsätta!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    
+                    case "6":
                         keepRunning = false;
                         Console.WriteLine("Tack för att du använde vårt bibliotek. Programmet avslutas nu.");
                         break;
